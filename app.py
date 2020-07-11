@@ -18,14 +18,21 @@ def predict():
     '''
     For rendering results on HTML GUI
     '''
-    int_features = [int(x) for x in request.form.values()]
-    final_features = [np.array(int_features)]
-    sent2 = union.transform(final_features)
 
-    prediction = model.predict(sent2)
+    int_features =  request.form.get('hotelrev')
 
-    
-    return render_template('index.html', prediction_text=prediction)
+    sent = str(int_features)
+    #output=u'' + output.decode('utf-8')
+    sent=sent.rstrip()
+    sent=sent.lstrip()
+    sent2 = un.transform([sent])
+    prediction =model.predict(sent2)
+    prediction=str(prediction).replace("['", "")
+    prediction=str(prediction).replace("']", "")
+    outputstatment = prediction + "\n  " + str(int_features)
+
+    return render_template('index.html', prediction_text=outputstatment)
+
 
 
 if __name__ == "__main__":
