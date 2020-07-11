@@ -29,7 +29,7 @@ def predict():
     prediction =model.predict(sent2)
     prediction=str(prediction).replace("['", "")
     prediction=str(prediction).replace("']", "")
-    outputstatment = prediction + "\n  " + str(int_features)
+    outputstatment = prediction# + "\n  " + str(int_features)
 
     return render_template('index.html', prediction_text=outputstatment)
 
