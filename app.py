@@ -1,9 +1,13 @@
 import numpy as np
 from flask import Flask, request, jsonify, render_template
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.pipeline import Pipeline, FeatureUnion
+
 import pickle
 
 app = Flask(__name__)
-model = pickle.load(open('model.pkl', 'rb'))
+model = pickle.load(open('MSA.pkl', 'rb'))
+un = pickle.load(open('union.pkl', 'rb'))
 
 @app.route('/')
 def home():
